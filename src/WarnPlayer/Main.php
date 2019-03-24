@@ -37,13 +37,13 @@
 
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args) {
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool {
 
       if(strtolower($cmd->getName()) === "warn") {
 
         if(!(isset($args[0]) and isset($args[1]))) {
 
-          $sender->sendMessage(TF::RED . "Error: not enough args. Usage: /warn <player> < reason >");
+          $sender->sendMessage(TF::colorize("&6Error: not enough args. Usage: &b/warn <player> <reason>"));
 
           return true;
 
@@ -57,7 +57,7 @@
 
           if($player->isOp()){
 
-            $sender->sendMessage(TF::RED . $player->getName() . " has the OP status and thus, cannot be warned.");
+            $sender->sendMessage(TF::colorize("&4" . $player->getName() . " &chas the OP status which means they cannot be warned."));
 
             return;
 
@@ -65,7 +65,7 @@
 
           if($player === null) {
 
-            $sender->sendMessage(TF::RED . "Player " . $name . " could not be found.");
+            $sender->sendMessage(TF::colorize("&cPlayer &4" . $name . " &ccould not be found."));
 
             return true;
 
@@ -103,7 +103,7 @@
 
                 $player->kick("You were kicked for being warned 3+ times.");
 
-                $sender->sendMessage(TF::GREEN . $player_name . " was kicked for being warned 3+ times.");
+                $sender->sendMessage(TF::colorize("&b" . $player_name . " &6was kicked for being warned 3+ times."));
 
                 return true;
 
@@ -117,7 +117,7 @@
 
                 $player->setBanned(true);
 
-                $sender->sendMessage(TF::GREEN . $player_name . " was banned for being warned 3+ times.");
+                $sender->sendMessage(TF::colorize("&b" . $player_name . " &6was banned for being warned 3+ times."));
 
                 return true;
 
@@ -133,15 +133,15 @@
 
             } else {
 
-              $player->sendMessage(TF::YELLOW . "You have been warned by " . $sender_name . " for " . $reason);
+              $player->sendMessage(TF::colorize("&6You have been warned by &b" . $sender_name . " &6for &b" . $reason));
 
-              $this->getServer()->broadcastMessage(TF::YELLOW . $player_name . " was warned by " . $sender_name . " for " . $reason);
+              $this->getServer()->broadcastMessage(TF::colorize("&b" . $player_name . " &6was warned by &b" . $sender_name . " &6for &b" . $reason));
 
               $file = file_get_contents($this->dataPath() . "Players/" . strtolower($player_name) . ".txt");
 
               file_put_contents($this->dataPath() . "Players/" . strtolower($player_name) . ".txt", $file + 1);
 
-              $sender->sendMessage(TF::GREEN . "Warned " . $player_name . ", and added +1 warns to their file.");
+              $sender->sendMessage(TF::colorize("&6Warned &b" . $player_name . ", &6and added +1 warns to their file."));
 
               return true;
 
@@ -157,7 +157,7 @@
 
         if(!(isset($args[0]))) {
 
-          $sender->sendMessage(TF::RED . "Error: not enough args. Usage: /warns <player>");
+          $sender->sendMessage(TF::colorize("&cError: not enough args. Usage: /warns <player>"));
 
           return true;
 
@@ -169,7 +169,7 @@
 
           if($player === null) {
 
-            $sender->sendMessage(TF::RED . "Player " . $name . " could not be found.");
+            $sender->sendMessage(TF::colorize("&cPlayer &4" . $name . " &ccould not be found."));
 
             return true;
 
@@ -179,7 +179,7 @@
 
             if(!(file_exists($this->dataPath() . "Players/" . strtolower($player_name) . ".txt"))) {
 
-              $sender->sendMessage(TF::RED . $player_name . " has no warns.");
+              $sender->sendMessage(TF::colorize("&4" . $player_name . " &chas no warns."));
 
               return true;
 
@@ -187,7 +187,7 @@
 
               $player_warns = file_get_contents($this->dataPath() . "Players/" . strtolower($player_name) . ".txt");
 
-              $sender->sendMessage(TF::GREEN . "Player " . $player_name . " has " . $player_warns . " warns.");
+              $sender->sendMessage(TF::colorize("&6Player &b" . $player_name . " &6has &b" . $player_warns . " &6warns."));
 
               return true;
 
