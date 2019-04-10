@@ -9,6 +9,7 @@
   use pocketmine\command\Command;
   use pocketmine\command\CommandSender;
   use pocketmine\utils\Config;
+  use pocketmine\event\player\PlayerJoinEvent;
 
   class Main extends PluginBase implements Listener {
 
@@ -18,10 +19,7 @@
 
     }
 
-    /*public function onJoin(PlayerJoinEvent $event){
-      $player = $event->getPlayer();
-      //to-do implement config option for on join player data generation
-   */ public function onEnable() {
+      public function onEnable() {
 
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
@@ -39,7 +37,20 @@
       }
 
     }
+    public function onJoin(PlayerJoinEvent $event){
+      $player = $event->getPlayer();
+      $this->config = new Config($this->dataPath() . "config.yml", CONFIG::YAML, array());
+       if($this->config->get("generate-player-data-on-join") === true){
 
+if(!(file_exists($this->dataPath() . "Players/" . $player->getName() . ".txt"))) {
+
+              touch($this->dataPath() . "Players/" . $player->getName() . ".txt");
+
+              file_get_contents($this->dataPath() . "Players/" . $player->getName() . ".txt");
+
+            }
+}
+}
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool {
 
       if(strtolower($cmd->getName()) === "warn") {
@@ -85,6 +96,12 @@
               file_put_contents($this->dataPath() . "Players/" . $player_name . ".txt", "0");
 
             }
+if($this->config->get("require-reason") === true){
+            if(empty($args[1])){
+$sender->sendMessage(TF::colorize("&cYou need to enter a valid reason."));
+return true;
+}
+}
 
             $reason = implode(" ", $args);
 
