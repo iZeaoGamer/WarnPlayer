@@ -8,6 +8,7 @@
   use pocketmine\Player;
   use pocketmine\command\Command;
   use pocketmine\command\CommandSender;
+  use pocketmine\utils\Config;
 
   class Main extends PluginBase implements Listener {
 
@@ -17,7 +18,10 @@
 
     }
 
-    public function onEnable() {
+    /*public function onJoin(PlayerJoinEvent $event){
+      $player = $event->getPlayer();
+      //to-do implement config option for on join player data generation
+   */ public function onEnable() {
 
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
@@ -122,7 +126,7 @@
 
               } else {
 
-                $this->getServer()->getLogger()->error($action . " in file config.yml is invalid, valid options: kick, ban. Disabling plugin.");
+                $this->getLogger()->error($action . " in file config.yml is invalid, valid options: kick, ban. Disabling plugin.");
 
                 $this->getServer()->getPluginManager()->disablePlugin($this->getServer()->getPluginManager()->getPlugin("WarnPlayer"));
 
