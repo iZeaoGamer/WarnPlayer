@@ -33,6 +33,8 @@
 
         $this->config = new Config($this->dataPath() . "config.yml", Config::YAML, array());
         $this->config->set("action_after_three_warns: ", "kick");
+        $this->config->set("generate-player-data-on-join", true);
+        $this->config->set("require-reason", true);
 
       }
 
