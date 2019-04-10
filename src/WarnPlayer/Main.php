@@ -27,11 +27,10 @@
 
         chdir($this->dataPath());
 
-        @mkdir("Players/", 0777, true);
+        @mkdir($this->dataPath() . "Players/", 0777, true);
 
-        touch("config.yml");
-
-        file_put_contents("config.yml", "action_after_three_warns: kick");
+        $this->config = new Config($this->dataPath() . "config.yml", Config::YAML, array());
+        $this->config->set("action_after_three_warns: ", "kick");
 
       }
 
@@ -75,17 +74,17 @@
 
             $player_name = $player->getName();
 
-            if(!(file_exists($this->dataPath() . "Players/" . strtolower($player_name) . ".txt"))) {
+            if(!(file_exists($this->dataPath() . "Players/" . $player_name . ".txt"))) {
 
-              touch($this->dataPath() . "Players/" . strtolower($player_name) . ".txt");
+              touch($this->dataPath() . "Players/" . $player_name . ".txt");
 
-              file_put_contents($this->dataPath() . "Players/" . strtolower($player_name) . ".txt", "0");
+              file_put_contents($this->dataPath() . "Players/" . $player_name . ".txt", "0");
 
             }
 
             $reason = implode(" ", $args);
 
-            $file = file_get_contents($this->dataPath() . "Players/" . strtolower($player_name) . ".txt");
+            $file = file_get_contents($this->dataPath() . "Players/" . $player_name . ".txt");
 
             if($file >= "3") {
 
@@ -97,7 +96,7 @@
 
                 if($player->isOP()){
 
-                  return;
+                  return true;
 
                 }
 
@@ -111,7 +110,7 @@
 
                 if($player->isOP()){
                   
-                  return;
+                  return true;
                   
                 }
 
@@ -137,9 +136,9 @@
 
               $this->getServer()->broadcastMessage(TF::colorize("&b" . $player_name . " &6was warned by &b" . $sender_name . " &6for &b" . $reason));
 
-              $file = file_get_contents($this->dataPath() . "Players/" . strtolower($player_name) . ".txt");
+              $file = file_get_contents($this->dataPath() . "Players/" . $player_name . ".txt");
 
-              file_put_contents($this->dataPath() . "Players/" . strtolower($player_name) . ".txt", $file + 1);
+              file_put_contents($this->dataPath() . "Players/" . $player_name . ".txt", $file + 1);
 
               $sender->sendMessage(TF::colorize("&6Warned &b" . $player_name . ", &6and added +1 warns to their file."));
 
@@ -177,7 +176,7 @@
 
             $player_name = $player->getName();
 
-            if(!(file_exists($this->dataPath() . "Players/" . strtolower($player_name) . ".txt"))) {
+            if(!(file_exists($this->dataPath() . "Players/" . $player_name . ".txt"))) {
 
               $sender->sendMessage(TF::colorize("&4" . $player_name . " &chas no warns."));
 
@@ -185,7 +184,7 @@
 
             } else {
 
-              $player_warns = file_get_contents($this->dataPath() . "Players/" . strtolower($player_name) . ".txt");
+              $player_warns = file_get_contents($this->dataPath() . "Players/" . $player_name . ".txt");
 
               $sender->sendMessage(TF::colorize("&6Player &b" . $player_name . " &6has &b" . $player_warns . " &6warns."));
 
@@ -202,5 +201,3 @@
     }
 
   }
-
-?>
