@@ -7,7 +7,11 @@ commands:
   warn:
     description: Warn A Player!
     usage: "/warn <player> <reason>"
-    permission: player.warn
+  warns:
+    description: Checks a list of warnings a player has.
+    usage: "/warns <Player>"
 permissions:
   player.warn:
+    default: op
+  player.warns:
     default: op

@@ -1,0 +1,14 @@
+action_after_three_warns: kick
+## Which action should be executed when it reaches the maximum warning points.
+
+generate-player-data-on-join: true
+## This option (if enabled) will automatically generate the specific player data file onJoin. If option disabled, then the file will only generate if the player is warned.
+
+require-reason: true
+## This option (if enabled) will require you to enter the reason of that warn. If option disabled, then you don't have to enter a reason when warning a player.
+
+kick_message: "&aYou have been kicked for being warned 3+ times."
+### If kick action is enabled, then this will be the kick message. You can edit the kick message if you want.
+
+ban_message: "&aYou have been banned for being warned 3+ times."
+### If ban action is enabled, then this will be the ban message. You can edit the ban message if you want.
