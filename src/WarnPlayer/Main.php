@@ -62,7 +62,7 @@
 
             $sender->sendMessage(TF::colorize("&4" . $player->getName() . " &chas the OP status which means they cannot be warned."));
 
-            return;
+            return true;
 
           }
 
@@ -200,8 +200,8 @@
 
         }
 
-      }
+      return true;
 
     }
-
-  }
+}
+}
