@@ -12,3 +12,6 @@ kick_message: "&aYou have been kicked for being warned 3+ times."
 
 ban_message: "&aYou have been banned for being warned 3+ times."
 ### If ban action is enabled, then this will be the ban message. You can edit the ban message if you want.
+
+max-warns: 3
+### Max warns before an action is taken place. Default: 3

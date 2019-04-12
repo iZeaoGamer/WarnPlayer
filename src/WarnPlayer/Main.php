@@ -80,7 +80,8 @@ return true;
 }
             $reason = implode(" ", $args);
             $file = file_get_contents($this->dataPath() . "Players/" . $player_name . ".txt");
-            if($file >= "3") { //To do make this configurable.
+            $maxWarns = $this->config->get("max-warns");
+            if($file >= $maxWarns) { //To do make this configurable.
               $this->config = new Config($this->dataPath() . "config.yml", Config::YAML, array());
               $action = $this->config->get("action_after_three_warns");
               if($action === "kick") {
