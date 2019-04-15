@@ -101,7 +101,7 @@ return true;
               $player->sendMessage(TF::colorize("&6You have been warned by &b" . $sender_name . " &6for &b" . $reason));
               $this->getServer()->broadcastMessage(TF::colorize("&b" . $player_name . " &6was warned by &b" . $sender_name . " &6for &b" . $reason));
               $file = file_get_contents($this->getDataFolder() . "Players/" . $player_name . ".txt");
-              file_put_contents( . "Players/" . $player_name . ".txt", $file + 1);
+              file_put_contents($this->getDataFolder() . "Players/" . $player_name . ".txt", $file + 1);
               $sender->sendMessage(TF::colorize("&6Warned &b" . $player_name . ", &6and added +1 warns to their file."));
               return true;
             }
