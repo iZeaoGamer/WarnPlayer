@@ -15,3 +15,9 @@ ban_message: "&aYou have been banned for being warned 3+ times."
 
 max-warns: 3
 ### Max warns before an action is taken place. Default: 3
+
+enable-warnbroadcast-message: true
+
+
+player_data: Players
+### DO NOT EDIT THIS SETTING UNLESS YOU KNOW WHAT YOU’RE DOING.

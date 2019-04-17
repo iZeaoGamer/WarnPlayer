@@ -1,0 +1,22 @@
+### CONSOLE MESSAGES
+generate-data-message: "{player} has been added to the Warns database."
+##If generate player data on join is enabled in config.yml, then this message shall appear.
+
+
+### /warn command messages:
+### Use & for color codes.
+no-arguments: "Please use: /warn {player} {reason}"
+valid-reason: "Please enter a valid reason."
+kick_message: "{player} has been kicked from the server because they were warned {maxwarns} times."
+ban_message: "{player} has been banned from the server because they were warned {maxwarns} times."
+warned-message: "You have been warned by {sender_name}. Reason: {reason}"
+added-warn-message: "You have added +1 warning to {player}."
+cannot-kick-ops: "You cannot kick this player because they are opped."
+cannot-ban-ops: "You cannot ban this player because they are opped."
+
+
+### Both (/warns and /warn)
+warns-usage: "Please use: /warns <player>"
+player-not-found: "This player cannot be found in the player database."
+no-warns: "{player} has no warnings."
+player-warns: "{player} has {warns} warns."
