@@ -44,12 +44,17 @@ if(!(file_exists($this->getDataFolder() . $this->config->get("player_data") . "/
 }
 public function onPlayerBan(PlayerPreLoginEvent $event){
     $player = $event->getPlayer();
+   $maxWarns = $this->config->get("max-warns");
     if($player->isBanned()){
-        $player->close("", TF::colorize($this->messages->get("ban_message")));
+         $player->close("", TF::colorize(str_replace(["{maxwarns}"], [$maxwarns], $this->messages->get("ban_message"))));
     }
 }
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool {
       if(strtolower($cmd->getName()) === "warn") { 
+        if(!$sender->hasPermission("playerwarn.warn")){
+              $sender->sendMessage(TF::colorize($this->messages->get("warns-no-permission")));
+              return true;
+          }
         if(!(isset($args[0]))){
           $sender->sendMessage(TF::colorize($this->messages->get("no-arguments")));
           return true;
@@ -123,6 +128,10 @@ return true;
         }
         }
       if(strtolower($cmd->getName()) === "warns") {
+        if(!$sender->hasPermission("playerwarn.warns")){
+              $sender->sendMessage(TF::colorize($this->messages->get("warns-no-permission")));
+              return true;
+          }
         if(!(isset($args[0]))){
             $sender->sendMessage(TF::colorize($this->messages->get("warns-usage")));
           return true;
