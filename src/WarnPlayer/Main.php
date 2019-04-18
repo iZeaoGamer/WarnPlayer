@@ -58,14 +58,14 @@ public function onPlayerBan(PlayerPreLoginEvent $event){
           $name = $args[0];
           $player = $this->getServer()->getPlayer($name);
           if($player === null) {
-            $sender->sendMessage(TF::colorize($this->messages->get("player-not-found"))); //To-Do customise it to show variables. 
+            $sender->sendMessage(TF::colorize(str_replace(["{player}"], [$name], $this->messages->get("player-not-found"))));
             return true;
           } else {
             unset($args[0]);
             $player_name = $player->getName();
             if(!(file_exists($this->getDataFolder() . $this->config->get("player_data") . "/" . $player_name . ".txt"))) {
               touch($this->getDataFolder() . $this->config->get("player_data") . "/" . $player_name . ".txt");
-              file_put_contents($this->getDataFolder() . $this->config->get("player_data") . "/" . $player_name . ".txt", "0"); //To-Do customise playerdata generation (edit where the target should go to.)
+              file_put_contents($this->getDataFolder() . $this->config->get("player_data") . "/" . $player_name . ".txt", "0");
             }
 if($this->config->get("require-reason") === true){
             if(empty($args[1])){
@@ -101,7 +101,7 @@ return true;
                 $player->kick(TF::colorize(str_replace(["{maxwarns}"], [$maxwarns], $this->messages->get("ban_message"))));
                 if(!(file_exists($this->getDataFolder() . "Bans/" . $player_name))){
                     touch($this->getDataFolder() . "Bans/" . $player_name . ".txt");
-                    file_put_contents($this->getDataFolder() . "Bans/" . $player_name . ".txt", "Banned player: $player_name\nReason: $reason");
+                    file_put_contents($this->getDataFolder() . "Bans/" . $player_name . ".txt", "Banned player: $player_name\nReason: $reason"); //to-do customize what goes in the bans database / file.
                 }
                 $sender->sendMessage(TF::colorize(str_replace(["{player}", "{maxwarns}"], [$player->getName(), $maxwarns], $this->messages->get("ban-sender-message"))));
                 return true;
