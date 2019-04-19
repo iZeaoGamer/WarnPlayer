@@ -111,6 +111,7 @@ return true;
                 }
                 $sender->sendMessage(TF::colorize(str_replace(["{player}", "{maxwarns}"], [$player->getName(), $maxwarns], $this->messages->get("ban-sender-message"))));
                 return true;
+                //}elseif($action === "ban-ip"){ to-do implement ban ips action type.
                 //}elseif($action === "message"){ To-do implement a messages action system.
               } elseif($action === null){
                 $this->getLogger()->error($action . " in file config.yml is invalid, valid options: kick, ban. Disabling plugin.");
