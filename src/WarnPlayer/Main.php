@@ -12,11 +12,11 @@
   class Main extends PluginBase implements Listener {
   public function onEnable() {
       if(!is_file($this->getDataFolder() . "config.yml")) { $this->saveDefaultConfig(); }
-      $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
+      $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array()); //to-do customize the name of the config.yml file.
   $this->getServer()->getPluginManager()->registerEvents($this, $this);
  if (!is_dir($this->getDataFolder())) { @mkdir($this->getDataFolder()); }
  if (!is_dir($this->getDataFolder() . $this->config->get("player_data") . "/")) { @mkdir($this->getDataFolder() . $this->config->get("player_data")); }
- if(!is_dir($this->getDataFolder() . "Bans/")) mkdir($this->getDataFolder() . "Bans");
+ if(!is_dir($this->getDataFolder() . "Bans/")) mkdir($this->getDataFolder() . "Bans"); //To-do customise how bans database should generate.
  if(!is_file($this->getDataFolder() . "messages.yml")) { $this->saveResource("messages.yml");}
  $this->messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML, array());
  $string = "action_after_three_warns: ";
@@ -25,6 +25,7 @@
                   $this->getLogger()->info("You chose the kick option. Enabling WarnPlayer.");
               } elseif($action === "ban"){
                   $this->getLogger()->info("You chose the ban option. Enabling WarnPlayer");
+              //To-do add a message action, where if you exceed the max warns, there'll be a message saying so.
               } elseif($action === null){
                 $this->getLogger()->error($action . " in file config.yml is invalid, valid options: kick, ban. Disabling plugin.");
                 $this->getServer()->getPluginManager()->disablePlugin($this->getServer()->getPluginManager()->getPlugin("WarnPlayer"));
@@ -33,7 +34,7 @@
     }
     public function onJoin(PlayerJoinEvent $event){
       $player = $event->getPlayer();
-      $this->config = new Config($this->getDataFolder() . "config.yml", CONFIG::YAML, array());
+      $this->config = new Config($this->getDataFolder() . "config.yml", CONFIG::YAML, array()); //to-do customise the name of the config file.
        if($this->config->get("generate-player-data-on-join") === true){
        }
 if(!(file_exists($this->getDataFolder() . $this->config->get("player_data") . "/" . $player->getName() . ".txt"))) {
@@ -110,6 +111,7 @@ return true;
                 }
                 $sender->sendMessage(TF::colorize(str_replace(["{player}", "{maxwarns}"], [$player->getName(), $maxwarns], $this->messages->get("ban-sender-message"))));
                 return true;
+                //}elseif($action === "message"){ To-do implement a messages action system.
               } elseif($action === null){
                 $this->getLogger()->error($action . " in file config.yml is invalid, valid options: kick, ban. Disabling plugin.");
                 $this->getServer()->getPluginManager()->disablePlugin($this->getServer()->getPluginManager()->getPlugin("WarnPlayer"));
