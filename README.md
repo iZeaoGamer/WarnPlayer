@@ -24,7 +24,6 @@ If you have any suggestions/bugs, please open a new issue. Thank you!
 - [x] Customise how player data generates.
 - [x] Finally! A bans database straight from this plugin!
 - [x] Color codes support! (Use & sign instead of §)
-- [ ] Customize how bans database generates.
-- [ ] Customize the name of the config file.
-- [ ] Add new action type: messages - Where if you exceed the maximum of warnings, it'll message you letting you know so, rather than any other harsh punishments.
-- [ ] Add new action type: ban-ip
+- [x] Customize how bans database generates.
+- [x] Add new action type: messages - Where if you exceed the maximum of warnings, it'll message you letting you know so, rather than any other harsh punishments.
+- [x] Add new action type: ban-ip

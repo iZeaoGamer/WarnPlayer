@@ -15,3 +15,6 @@ enable-ops-status: true
 ### If this option is set to true, then ops won't be kicked/banned due to them being opped. If set to false, then they'll get kicked/banned nonetheless (after the maxwarns)
 player_data: Players
 ### DO NOT EDIT THIS SETTING UNLESS YOU KNOW WHAT YOU’RE DOING.
+
+bans-data: Bans
+### DO NOT EDIT THIS SETTING UNLESS YOU KNOW WHAT YOU'RE DOING.

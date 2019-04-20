@@ -16,7 +16,8 @@ added-warn-message: "You have added +1 warning to {player}."
 cannot-kick-ops: "You cannot kick this player because they are opped."
 cannot-ban-ops: "You cannot ban this player because they are opped."
 no-warn-permission: "&cYou do not have permission to execute /warn."
-
+ban-ip-message: "&cYou were ip banned by {sender_name} because you exceeded the maximum of warnings, which is {maxwarns}"
+message-action-text: "&cYou were warned by {sender_name} {maxwarns} times, so you're receiving this message to let you know to read the rules, and try and not get warned again."
 
 ### /warns command messages
 warns-usage: "Please use: /warns <player>"
