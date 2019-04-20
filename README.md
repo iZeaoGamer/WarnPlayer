@@ -27,3 +27,7 @@ If you have any suggestions/bugs, please open a new issue. Thank you!
 - [x] Customize how bans database generates.
 - [x] Add new action type: messages - Where if you exceed the maximum of warnings, it'll message you letting you know so, rather than any other harsh punishments.
 - [x] Add new action type: ban-ip
+- [ ] Add /warns bancheck - Allows you to check if that user's been banned or not.
+- [ ] Customize the data that goes in the bans database. Ex: Change the messages that go in the bans database.
+- [ ] Add megaban as action type.
+- [ ] Customize if the maxwarns resets on action type.
