@@ -20,7 +20,7 @@
  if(!is_file($this->getDataFolder() . "messages.yml")) { $this->saveResource("messages.yml");}
  $this->messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML, array());
 
-
+//public function ActionTypes(): void{ todo add a function for all action types.
               $action = $this->config->get("action_after_three_warns");
               if($action === "kick") {
                   $this->getLogger()->info("You chose the kick option. Enabling WarnPlayer.");
@@ -30,12 +30,18 @@
                 $this->getLoger()->info("You chose the message option. Enabling WarnPlayer.");
               }elseif($action === "ban-ip"){
 $this->getLogger()->info("You chose the  Ban IP option. Enabling WarnPlayer.");
+                //to-do add CID Ban as action type.
                }elseif($action === null){
                 $this->getLogger()->error($action . " in file config.yml is invalid, valid options: kick, ban, ban-ip, and message. Disabling plugin.");
                 $this->getServer()->getPluginManager()->disablePlugin($this->getServer()->getPluginManager()->getPlugin("WarnPlayer"));
                 return true;
         }
   }
+    //public function onConfigGeneration(); //to-do add function for config generation onEnable() state.
+    
+    //public function onMessageGeneration(); //to-do add function for messages.yml generation onEnable() state.
+    
+    //public function generatePlayerData(Player $player): void{ to-do add a function for generating playerdata.
     public function onJoin(PlayerJoinEvent $event){
       $player = $event->getPlayer();
       $this->config = new Config($this->getDataFolder() . "config.yml", CONFIG::YAML, array());
@@ -46,7 +52,7 @@ if(!(file_exists($this->getDataFolder() . $this->config->get("player_data") . "/
               touch($this->getDataFolder() . $this->config->get("player_data") . "/" . $player->getName() . ".txt");
               file_put_contents($this->getDataFolder() . $this->config->get("player_data") . "/" . $player->getName() . ".txt", 0);
             }
-}
+    }
 public function onPlayerBan(PlayerPreLoginEvent $event){
     $player = $event->getPlayer();
    $maxWarns = $this->config->get("max-warns");
