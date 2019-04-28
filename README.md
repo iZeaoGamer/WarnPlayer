@@ -31,3 +31,5 @@ If you have any suggestions/bugs, please open a new issue. Thank you!
 - [ ] Customize the data that goes in the bans database. Ex: Change the messages that go in the bans database.
 - [ ] Add megaban as action type.
 - [ ] Customize if the maxwarns resets on action type.
+- [ ] Add config reloading support - Where you can use /warnplayer reload to reload the config file(s).
+- [ ] Add /warnplayer help command.
